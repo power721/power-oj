@@ -62,7 +62,7 @@ class User extends CI_Controller
     }
     else
     {
-      $this->session->set_flashdata('messages', array('You are login successfully.'));
+      //$this->session->set_flashdata('messages', array('You are login successfully.'));
       redirect(base_url());
     }
   }
@@ -71,20 +71,20 @@ class User extends CI_Controller
   {
     $this->session->unset_userdata('user');
     $this->session->unset_userdata('uid');
-    $this->session->set_flashdata('messages', array('You are logout successfully.'));
+    //$this->session->set_flashdata('messages', array('You are logout successfully.'));
     $this->user_model->logout();
     redirect($_SERVER['HTTP_REFERER']);
   }
 
   public function authenticate()
   {
-    $name = $this->input->post('name',TRUE);
+    /*$name = $this->input->post('name',TRUE);
     $user = $this->user_model->user_exists($name);
     if(!$user)
     {
       $this->form_validation->set_message('authenticate','The user is not exists.');
       return FALSE;
-    }
+    }*/
     $user = $this->user_model->login();
     if($user)
       return TRUE;

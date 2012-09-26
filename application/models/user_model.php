@@ -14,7 +14,8 @@ class User_model extends CI_Model
   {
     if(!isset(self::$user))
     {//检查user 对象是否已经存在，如果不存在
-      if (!$uid = $this->session->userdata('uid'))
+      $CI =& get_instance();
+      if (!$uid = $CI->session->userdata('uid'))
       {
         return FALSE;
       }
