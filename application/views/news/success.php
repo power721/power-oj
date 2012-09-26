@@ -1,0 +1,1 @@
+You had created a news item.

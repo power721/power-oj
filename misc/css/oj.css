@@ -1,0 +1,139 @@
+﻿@charset "utf-8";
+/*
+ * elements
+ */
+body {
+	background-image:url(../image/bg.jpg);
+	background-color:;
+	margin:0;
+	/* 最好将 body 元素的边距和填充设置为 0 以覆盖不同的浏览器默认值 */
+	text-align:center;
+	/* 在 IE 5* 浏览器中，这会将容器居中。文本随后将在 #container 选择器中设置为默认左对齐 */
+	font-family:"Times New Roman";
+}
+/*
+ * div
+ */
+#page {
+    width: 99%;
+    position: relative;
+    left: 0.5%;
+}
+#menu {
+    font-weight: bold;
+    height: 35px;
+    position: static;
+    text-align: center;
+    visibility: visible;
+    width: 100%;
+    z-index: 2;
+}
+.menu_item {
+    display: inline;
+    position: relative;
+    top: 5px;
+    vertical-align: bottom;
+}
+.menu_item a {
+    font-size: 20px;
+    top: 2px;
+}
+.Pagination {
+	padding: 0;
+	margin: 0;
+	font-size:16px;
+	font-family: "微软雅黑";
+	/*border:1px solid #d4d4d4;*/
+	/*background:#5D7B9D;*/
+	/*color:white;
+	padding:5px 15px;
+	float:auto;
+	
+	margin:2px;*/
+	/*text-align:right;*/
+}
+#Problem {
+  font-size:18px;
+}
+/*
+ * a link
+ */
+a:link {
+	text-decoration:none;
+}
+a:visited {
+	text-decoration:none;
+	color:#00C;
+}
+a:hover {
+	background-color:#DFE1E3;
+	color:red;
+	text-decoration:underline
+}
+a:active {
+	text-decoration:none;
+}
+/*
+ * 
+ */
+img {
+	vertical-align:middle;
+}
+/*
+ * table
+ */
+table {
+	border:0px;
+	border-collapse:collapse;
+	/*margin-bottom:10px;
+	margin-top:10k-all;*/
+}
+table.problem {
+	border:0px;
+	border-collapse:collapse;
+	margin-bottom:10px;
+	margin-top:10k-all;
+	TABLE-LAYOUT:fixed;
+	word-break:break-all;
+}
+th {
+	border:1px solid white;
+	text-align:center;
+	font-size:18;
+	background:#5D7B9D;
+}
+tr.srm {
+  color:red;
+}
+tr.regional {
+  font-weight:bold;
+}
+td.no {
+    border: 0 none;
+    font-size: 18px;
+}
+td {
+	border:1px solid white;
+	text-align:;
+	font-size:18;
+}
+/*
+ * pre
+ */
+div pre {
+	word-wrap:break-word; 
+	word-break:normal;
+  	white-space:pre-wrap; /* css-3 */
+  	white-space:-moz-pre-wrap; /* Mozilla, since 1999 */
+  	white-space:-pre-wrap; /* Opera 4-6 */
+  	white-space:-o-pre-wrap; /* Opera 7 */
+ 	word-wrap:break-word; /* Internet Explorer 5.5+ */
+ 	/*-moz-binding: url('./wordwrap.xml#wordwrap');*/ /* 再多这行 */
+}
+
+/*
+ * span
+ */
+span.pg_cur {
+	color:red;
+}
