@@ -2,7 +2,7 @@
 
 class Problem extends CI_Controller
 {
-  public function Problem()
+  public function __construct()
   {
     parent::__construct();
     $this->load->library('pagination');
@@ -25,10 +25,7 @@ class Problem extends CI_Controller
     $data['problems'] = $this->problem_model->get_problems($limit, ($offset-1)*$limit);
     $data['title'] = 'Problems List';
     
-    $this->load->view('templates/header',$data);
-    $this->load->view('templates/menu',$data);
-    $this->load->view('problem/list',$data);
-    $this->load->view('templates/footer',$data);
+    $this->load->page_view('problem/list',$data);
     
     $this->output->enable_profiler(true);
   }
@@ -50,11 +47,8 @@ class Problem extends CI_Controller
     $data['problem'] = $problem;
     $data['title'] = $problem->problem_id.':'.$problem->title;
     
-    $this->load->view('templates/header',$data);
-    $this->load->view('templates/menu',$data);
-    $this->load->view('problem/view',$data);
+    $this->load->page_view('problem/view',$data);
     $this->output->enable_profiler(true);
-    $this->load->view('templates/footer',$data);
     
     $this->problem_model->add_view_count($pid,$problem->view);
   }

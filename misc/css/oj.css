@@ -55,6 +55,9 @@ body {
 #Problem {
   font-size:18px;
 }
+.hide {
+    display: none;
+}
 /*
  * a link
  */

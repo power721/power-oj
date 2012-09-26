@@ -4,7 +4,7 @@
 <head>
   <link rel="Shortcut Icon" href="<?php echo base_url() ?>misc/image/favicon.ico" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
   <title><?php echo $title.' - '.$this->config->item('site_title') ?></title>
   <link href="<?php echo base_url() ?>misc/css/oj.css" type="text/css" rel="Stylesheet" rev="Stylesheet" media="all"/>
   <link href="<?php echo base_url() ?>misc/css/MyStyle.css" type="text/css" rel="Stylesheet" rev="Stylesheet" media="all"/>
@@ -12,6 +12,7 @@
   <script type="text/javascript" src="<?php echo base_url() ?>misc/js/oj.js"></script>
 </head>
 <body link="blue" alink="blue" vlink="blue">
+  <div class="hide"><a href="#content" title="Skip navigation." accesskey="2">Skip navigation</a>.</div>
   <div id="page" align="center">
     <div id="logo" align="center">
      <a href="<?php echo base_url() ?>"><img border=0 src="<?php echo base_url() ?>misc/image/logo.jpg" /></a>

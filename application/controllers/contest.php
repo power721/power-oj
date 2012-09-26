@@ -2,7 +2,7 @@
 
 class Contest extends CI_Controller
 {
-  public function Contest()
+  public function __construct()
   {
     parent::__construct();
     $this->load->library('pagination');
@@ -20,9 +20,6 @@ class Contest extends CI_Controller
     $data['title'] = 'Recent Contests';
     $data['contests'] = $contests;
     
-    $this->load->view('templates/header',$data);
-    $this->load->view('templates/menu',$data);
-    $this->load->view('contest/recent',$data);
-    $this->load->view('templates/footer',$data);
+    $this->load->page_view('contest/recent',$data);
   }
 }

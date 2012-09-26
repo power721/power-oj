@@ -2,7 +2,7 @@
 
 class User extends CI_Controller
 {
-  public function User()
+  public function __construct()
   {
     parent::__construct();
     $this->load->library('pagination');
@@ -24,19 +24,16 @@ class User extends CI_Controller
     $data['users'] = $this->user_model->get_users($limit, ($offset - 1) * $limit);
     $data['title'] = 'User List';
     
-    $this->load->view('templates/header',$data);
-    $this->load->view('templates/menu',$data);
-    $this->load->view('user/list',$data);
-    $this->load->view('templates/footer',$data);
+    $this->load->page_view('user/list',$data);
   }
   
-  public function view()
+  public function view($uid)
   {
     
   }
   
   
-  public function register()
+  public function signup()
   {
     
   }
@@ -45,7 +42,7 @@ class User extends CI_Controller
   {
     if($this->session->userdata('user'))
     {
-      //$this->session->unset_userdata('user');
+      //如果已经登录，返回首页
       redirect(base_url());
     }
     
@@ -54,32 +51,19 @@ class User extends CI_Controller
     
     $data['title'] = 'Login';
     
-    $this->form_validation->set_rules('name','name','required');
-    $this->form_validation->set_rules('pass','pass','required');
-    
-    if($this->form_validation->run() === FALSE)
+    $this->form_validation->set_rules('name','name','required|trim|callback_authenticate');
+    $this->form_validation->set_rules('pass','pass','required|trim');
+
+    if($this->form_validation->run() === FALSE)//验证失败
     {
-      //验证失败
-      $this->load->view('templates/header',$data);
-      $this->load->view('templates/menu',$data);
-      $this->load->view('user/login',$data);
-      $this->load->view('templates/footer',$data);
+      sleep(1);
+      $this->load->page_view('user/login',$data);
+      $this->output->enable_profiler(true);
     }
     else
     {
-      $user = $this->user_model->login();
-      
-      if($user)//登录成功
-      {
-        $this->session->set_flashdata('messages', array('You are login successfully.'));
-        redirect('/');
-        echo "Login sucess";
-      }
-      else//登录失败
-      {
-        $this->form_validation->set_message('password_check', '用户名或密码不正确');
-        echo "Login faild";
-      }
+      $this->session->set_flashdata('messages', array('You are login successfully.'));
+      redirect(base_url());
     }
   }
    
@@ -87,7 +71,24 @@ class User extends CI_Controller
   {
     $this->session->unset_userdata('user');
     $this->session->unset_userdata('uid');
-    $this->session->set_flashdata('messages', array('You are logout successfully.','test.'));
+    $this->session->set_flashdata('messages', array('You are logout successfully.'));
+    $this->user_model->logout();
     redirect($_SERVER['HTTP_REFERER']);
+  }
+
+  public function authenticate()
+  {
+    $name = $this->input->post('name',TRUE);
+    $user = $this->user_model->user_exists($name);
+    if(!$user)
+    {
+      $this->form_validation->set_message('authenticate','The user is not exists.');
+      return FALSE;
+    }
+    $user = $this->user_model->login();
+    if($user)
+      return TRUE;
+    $this->form_validation->set_message('authenticate','Invalid login. Please try again.');
+    return FALSE;
   }
 }
