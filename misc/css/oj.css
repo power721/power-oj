@@ -140,6 +140,12 @@ div pre {
 span.pg_cur {
 	color:red;
 }
+/*
+ * p
+ */
+p.error {
+	color:red;
+}
 
 /*
  * F.A.Q page

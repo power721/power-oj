@@ -35,7 +35,32 @@ class User extends CI_Controller
   
   public function signup()
   {
+    if($this->session->userdata('user'))
+    {
+      //如果已经登录，返回首页
+      redirect(base_url());
+    }
+
+    $this->load->helper('form');
+    $this->load->library('form_validation');
+
+    $data['title'] = 'Signup';
     
+    $this->form_validation->set_rules('username','Username','required|alpha_numeric|min_length[4]|max_length[16]|callback_singup_check');
+    $this->form_validation->set_rules('password','Password','required|min_length[6]|max_length[16]');
+    $this->form_validation->set_rules('passconf','Confirm Password','required|matches[password]');
+    $this->form_validation->set_rules('email','E-mail','required|valid_email');
+
+    if($this->form_validation->run() === FALSE)//验证失败
+    {
+      $this->load->page_view('user/signup',$data);
+      $this->output->enable_profiler(true);
+    }
+    else
+    {
+      $this->session->set_flashdata('messages', array('You are signup successfully.'));
+      redirect(base_url('user/'.$this->session->userdata('uid')));
+    }
   }
   
   public function login()
@@ -51,8 +76,8 @@ class User extends CI_Controller
     
     $data['title'] = 'Login';
     
-    $this->form_validation->set_rules('name','name','required|trim|callback_authenticate');
-    $this->form_validation->set_rules('pass','pass','required|trim');
+    $this->form_validation->set_rules('username','Username','required|trim|callback_authenticate');
+    $this->form_validation->set_rules('password','Password','required|trim');
 
     if($this->form_validation->run() === FALSE)//验证失败
     {
@@ -78,8 +103,8 @@ class User extends CI_Controller
 
   public function authenticate()
   {
-    $name = $this->input->post('name',TRUE);
-    $user = $this->user_model->user_exists($name);
+    $username = $this->input->post('username',TRUE);
+    $user = $this->user_model->user_exists($username);
     if(!$user)
     {
       $this->form_validation->set_message('authenticate','The user is not exists.');
@@ -89,6 +114,21 @@ class User extends CI_Controller
     if($user)
       return TRUE;
     $this->form_validation->set_message('authenticate','Invalid login. Please try again.');
+    return FALSE;
+  }
+
+  public function singup_check()
+  {
+    $username = $this->input->post('username',TRUE);
+    $user = $this->user_model->user_exists($username);
+    if($user)
+    {
+      $this->form_validation->set_message('singup_check','The user is exists, please change the username.');
+      return FALSE;
+    }
+    if($this->user_model->signup())
+      return TRUE;
+    $this->form_validation->set_message('singup_check','Can\'t insert user.');
     return FALSE;
   }
 }

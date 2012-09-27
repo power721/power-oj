@@ -54,10 +54,20 @@ class User_model extends CI_Model
 
   public function login()
   {
-    $name = $this->input->post('name',TRUE);
-    $pass = $this->input->post('pass',TRUE);
+    $username = $this->input->post('username',TRUE);
+    $password = $this->input->post('password',TRUE);
     
-    $query  = $this->db->get_where('users',array('name' => $name, 'pass' => md5($pass)));
+    return $this->login_user($username, $password);
+  }
+  
+  public function logout()
+  {
+    self::$user = FALSE;
+  }
+
+  public function login_user($username, $password)
+  {
+    $query  = $this->db->get_where('users',array('name' => $username, 'pass' => md5($password)));
     $user   = $query->row();
     if($user)
     {
@@ -77,17 +87,6 @@ class User_model extends CI_Model
     return $user;
   }
   
-  public function logout()
-  {
-    self::$user = FALSE;
-  }
-
-  public function login_user($name, $pass)
-  {
-    $query = $this->db->get_where('users',array('name' => $name, 'pass'=>md5($pass)));
-    return $query->row();
-  }
-  
   public function loginlog()
   {
     
@@ -95,6 +94,22 @@ class User_model extends CI_Model
 
   public function signup()
   {
+    $username = $this->input->post('username',TRUE);
+    $password = $this->input->post('password',TRUE);
+    $email = $this->input->post('email',TRUE);
 
+    $data = array
+    (
+      'name' => $username,
+      'pass' => md5($password),
+      'mail' => $email,
+      'create' => REQUEST_TIME,
+      //'access' => REQUEST_TIME,
+      //'login' => REQUEST_TIME,
+    );
+
+    if(!$this->db->insert('users', $data))
+        return FALSE;
+    return $this->login_user($username, $password);
   }
 }
