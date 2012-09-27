@@ -16,7 +16,8 @@ class Pages extends CI_Controller
     }
     
     $data['title'] = ucfirst($page);
-    
+    if($page == 'faq')
+      $data['title'] = 'Frequently Asked Questions';
     $this->load->page_view('pages/'.$page,$data);
     //$this->output->enable_profiler(true);
   }

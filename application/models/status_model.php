@@ -10,19 +10,19 @@ class Status_model extends CI_Model
   
   public function count_solutions()
   {
-    return $this->db->count_all('solutions');
+    return $this->db->count_all('solution');
   }
   
   public function get_solutions($limit = 20, $offset = 0)
   {
     $this->db->limit($limit,$offset);
-    $query = $this->db->get('solutions');
+    $query = $this->db->get('solution');
     return $query->result();
   }
   
   public function get_solution($sid)
   {
-    $query = $this->db->get_where('solutions',array('sid' => $sid));
+    $query = $this->db->get_where('solution',array('sid' => $sid));
     return $query->row();
   }
   
