@@ -203,6 +203,11 @@ define("ROOTPATH", str_replace("\\\\", "/", (realpath(dirname(__FILE__))).'/')) 
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+	
+/*
+ *	custom settings
+ */
+date_default_timezone_set('Asia/Chongqing');
 
 /*
  * --------------------------------------------------------------------

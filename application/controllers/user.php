@@ -37,10 +37,17 @@ class User extends CI_Controller
     {
       show_error('The user not exists.');
     }
+    $this->load->helper('date');
+    $problems = $this->user_model->get_user_problems($user->uid);;
 
     $data['title'] = 'User -- '.$user->name;
     $data['user'] = $user;
+    $data['problems'] = $problems;
+    $data['rank'] = $user->uid;
+    $data['login_time'] = unix_to_human($user->login,TRUE,'eu');
+
     $this->load->page_view('user/view',$data);
+    $this->output->enable_profiler(true);
   }
   
   

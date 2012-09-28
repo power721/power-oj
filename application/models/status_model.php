@@ -25,5 +25,10 @@ class Status_model extends CI_Model
     $query = $this->db->get_where('solution',array('sid' => $sid));
     return $query->row();
   }
-  
+
+  public function get_user_problems($uid)
+  {
+    $query = $this->db->distinct()->select('pid')->order_by('pid')->get_where('solution',array('uid' => $uid,'result' => 0));
+    return $query->result();
+  }
 }

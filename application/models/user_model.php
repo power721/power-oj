@@ -55,7 +55,7 @@ class User_model extends CI_Model
   public function user_exists($username)
   {
     $query = $this->db->get_where('users',array('name' => $username));
-    return $query->row();
+    return $query->num_rows() !== 0;
   }
 
   public function login()
@@ -126,5 +126,15 @@ class User_model extends CI_Model
       return FALSE;
     }
     return $this->login_user($username, $password);
+  }
+
+  public function get_user_problems($uid)
+  {
+    $this->db->distinct();
+    $this->db->select('pid');
+    $this->db->order_by('pid');
+    $query = $this->db->get_where('solution',array('uid' => $uid,'result' => 0));
+    
+    return $query->result();
   }
 }
