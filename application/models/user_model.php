@@ -46,6 +46,12 @@ class User_model extends CI_Model
     return $query->row();
   }
   
+  public function get_user_by_name($name)
+  {
+    $query = $this->db->get_where('users',array('name' => $name));
+    return $query->row();
+  }
+
   public function user_exists($username)
   {
     $query = $this->db->get_where('users',array('name' => $username));
@@ -77,11 +83,11 @@ class User_model extends CI_Model
       
       $data = array('user'=>$user->name,'uid'=>$user->uid);
       $this->session->set_userdata($data);
-      //login log?
+      log_message('info', 'User '.$username.' login successed.');
     }
     else
     {
-      //login log
+      log_message('info', 'User '.$username.' login failed.');
     }
     self::$user = $user;
     return $user;
@@ -98,6 +104,12 @@ class User_model extends CI_Model
     $password = $this->input->post('password',TRUE);
     $email = $this->input->post('email',TRUE);
 
+    if(!$username || !$password || !$email)
+    {
+      log_message('error', 'user\'s data is incorrect.');
+      return FALSE;
+    }
+
     $data = array
     (
       'name' => $username,
@@ -109,7 +121,10 @@ class User_model extends CI_Model
     );
 
     if(!$this->db->insert('users', $data))
-        return FALSE;
+    {
+      log_message('error', 'Can\'t insert data to db table users.');
+      return FALSE;
+    }
     return $this->login_user($username, $password);
   }
 }

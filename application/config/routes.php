@@ -42,6 +42,7 @@ $route['user/list'] = 'user/index';
 $route['user/login'] = 'user/login';
 $route['user/logout'] = 'user/logout';
 $route['user/signup'] = 'user/signup';
+$route['user/(:any)'] = 'user/view/$1';
 $route['user'] = 'user/index';
 
 $route['contest/recent'] = 'contest/recent';

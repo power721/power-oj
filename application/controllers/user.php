@@ -29,7 +29,18 @@ class User extends CI_Controller
   
   public function view($uid)
   {
-    
+    if(is_numeric($uid))
+      $user = $this->user_model->get_user($uid);
+    else
+      $user = $this->user_model->get_user_by_name($uid);
+    if (!$user)
+    {
+      show_error('The user not exists.');
+    }
+
+    $data['title'] = 'User -- '.$user->name;
+    $data['user'] = $user;
+    $this->load->page_view('user/view',$data);
   }
   
   
@@ -47,7 +58,7 @@ class User extends CI_Controller
 
     $data['title'] = 'Signup';
     
-    $this->form_validation->set_rules('username','Username','required|alpha_numeric|min_length[4]|max_length[16]|is_unique[users.name]|callback_singup_check');
+    $this->form_validation->set_rules('username','Username','required|alpha_dash|min_length[4]|max_length[16]|is_unique[users.name]');
     $this->form_validation->set_rules('password','Password','required|min_length[6]|max_length[16]');
     $this->form_validation->set_rules('passconf','Confirm Password','required|matches[password]');
     $this->form_validation->set_rules('email','E-mail','required|valid_email');
@@ -59,6 +70,11 @@ class User extends CI_Controller
     }
     else
     {
+      if(!$this->user_model->signup())
+      {
+        $this->load->page_view('user/signup',$data);
+        return;
+      }
       $this->session->set_flashdata('messages', array('You are signup successfully.'));
       redirect(base_url('user/'.$this->session->userdata('uid')));
     }
