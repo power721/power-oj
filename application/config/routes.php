@@ -52,13 +52,13 @@ $route['problem/list'] = 'problem/index';
 $route['problem/(:any)'] = 'problem/view/$1';
 $route['problem'] = 'problem';
 
-$route['news/create'] = 'news/create';
+/*$route['news/create'] = 'news/create';
 $route['news/view/(:any)'] = 'news/view/$1';
-$route['news'] = 'news';
+$route['news'] = 'news';*/
 
 $route['default_controller'] = 'pages/view';
 $route['(:any)'] = 'pages/view/$1';
-//$route['404_override'] = '';
+//$route['404_override'] = 'pages/oj_404';
 
 
 /* End of file routes.php */

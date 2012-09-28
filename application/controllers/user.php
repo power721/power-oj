@@ -41,12 +41,13 @@ class User extends CI_Controller
       redirect(base_url());
     }
 
+    //$this->load->helper('captcha');//验证码
     $this->load->helper('form');
     $this->load->library('form_validation');
 
     $data['title'] = 'Signup';
     
-    $this->form_validation->set_rules('username','Username','required|alpha_numeric|min_length[4]|max_length[16]|callback_singup_check');
+    $this->form_validation->set_rules('username','Username','required|alpha_numeric|min_length[4]|max_length[16]|is_unique[users.name]|callback_singup_check');
     $this->form_validation->set_rules('password','Password','required|min_length[6]|max_length[16]');
     $this->form_validation->set_rules('passconf','Confirm Password','required|matches[password]');
     $this->form_validation->set_rules('email','E-mail','required|valid_email');
@@ -119,13 +120,13 @@ class User extends CI_Controller
 
   public function singup_check()
   {
-    $username = $this->input->post('username',TRUE);
+    /*$username = $this->input->post('username',TRUE);
     $user = $this->user_model->user_exists($username);
     if($user)
     {
       $this->form_validation->set_message('singup_check','The user is exists, please change the username.');
       return FALSE;
-    }
+    }*/
     if($this->user_model->signup())
       return TRUE;
     $this->form_validation->set_message('singup_check','Can\'t insert user.');

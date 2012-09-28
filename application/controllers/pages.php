@@ -12,6 +12,8 @@ class Pages extends CI_Controller
   {
     if(!file_exists('application/views/pages/'.$page.'.php'))
     {
+      //$_error =& load_class('Exceptions', 'core');
+      //$_error->access_denied($page);
       show_404();
     }
     
@@ -21,4 +23,5 @@ class Pages extends CI_Controller
     $this->load->page_view('pages/'.$page,$data);
     //$this->output->enable_profiler(true);
   }
+
 }
