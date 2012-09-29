@@ -16,5 +16,5 @@
 </tr>
 <?php endforeach ?>
 </table>
-数据来源：<a href="http://contests.acmicpc.info/contests.json">http://contests.acmicpc.info/contests.json</a>
+<span align="center">数据来源：<a href="http://contests.acmicpc.info/contests.json">http://contests.acmicpc.info/contests.json</a></span>
 <br><br>

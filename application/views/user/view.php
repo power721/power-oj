@@ -3,13 +3,13 @@
 		<div>Last Loginned Time:<?php echo $login_time ?></div>
 		<table id="user-profile" class="user user-profile">
 			<tr>
-				<td></td><td colspan=2></td>
+				<!--<td></td><td colspan=2></td>-->
 			</tr>
 			<tr>
-				<td>Rank:</td><td><?php echo $rank ?></td><td>Solved Problems List</td>
+				<td>Rank:</td><td><?php echo $rank ?></td><td align="center">Solved Problems List</td>
 			</tr>
 			<tr>
-				<td>Solved:</td><td><?php echo $user->solved ?></td>
+				<td>Solved:</td><td><a href="<?php echo base_url().'status/u/'.$user->uid.'/r/0' ?>"><?php echo $user->solved ?></a></td>
 				<td rowspan=4>
 					<?php
 					$n = 0;
@@ -23,13 +23,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Submissions:</td><td><?php echo $user->submit ?>
+				<td>Submissions:</td><td><a href="<?php echo base_url().'status/u/'.$user->uid ?>"><?php echo $user->submit ?></a></td>
 			</tr>
 			<tr>
-				<td>School:</td><td><?php echo $user->school ?>
+				<td>School:</td><td><?php echo $user->school ?></td>
 			</tr>
 			<tr>
-				<td>Email:</td><td><?php echo $user->mail ?>
+				<td>Email:</td><td><a href="mailto:<?php echo $user->mail ?>"><?php echo $user->mail ?></a></td>
 			</tr>
 		</table>
 	</div>

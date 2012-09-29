@@ -42,7 +42,7 @@ class User_model extends CI_Model
   
   public function get_user($uid)
   {
-    $query = $this->db->get_where('users',array('uid' => $uid));
+    $query = $this->db->get_where('users',array('uid' => intval($uid)));
     return $query->row();
   }
   
@@ -132,9 +132,10 @@ class User_model extends CI_Model
   {
     $this->db->distinct();
     $this->db->select('pid');
+    //$this->db->group_by('pid');
     $this->db->order_by('pid');
-    $query = $this->db->get_where('solution',array('uid' => $uid,'result' => 0));
-    
+    $query = $this->db->get_where('solution',array('uid' => intval($uid),'result' => 0));
+
     return $query->result();
   }
 }

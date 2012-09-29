@@ -212,7 +212,7 @@ class Page {
      */
   	function go_page()
   	{
-		return '&nbsp;&nbsp;<input type="text" onkeydown="javascript:if(event.keyCode==13){var page=(this.value>'.$this->total_page.')?'.$this->total_page.':this.value;location=\''.$this->base_url.'/\'+page+\'\'}" value="'.$this->cur_page.'" style="width:25px"><input type="button" value="GO" onclick="javascript:var page=(this.previousSibling.value>'.$this->total_page.')?'.$this->total_page.':this.previousSibling.value;location=\''.$this->base_url.'/\'+page+\'\'">&nbsp;&nbsp;';
+		return '&nbsp;&nbsp;<input type="text" size=3 onkeydown="javascript:if(event.keyCode==13){var page=(this.value>'.$this->total_page.')?'.$this->total_page.':this.value;location=\''.$this->base_url.'/\'+page+\'\'}" value="'.$this->cur_page.'"><input type="button" value="GO" onclick="javascript:var page=(this.previousSibling.value>'.$this->total_page.')?'.$this->total_page.':this.previousSibling.value;location=\''.$this->base_url.'/\'+page+\'\'">&nbsp;&nbsp;';
 	}
 
 	/**

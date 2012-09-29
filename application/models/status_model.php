@@ -15,6 +15,7 @@ class Status_model extends CI_Model
   
   public function get_solutions($limit = 20, $offset = 0)
   {
+    $this->db->order_by('sid','desc');
     $this->db->limit($limit,$offset);
     $query = $this->db->get('solution');
     return $query->result();
@@ -22,7 +23,7 @@ class Status_model extends CI_Model
   
   public function get_solution($sid)
   {
-    $query = $this->db->get_where('solution',array('sid' => $sid));
+    $query = $this->db->get_where('solution',array('sid' => intval($sid)));
     return $query->row();
   }
 

@@ -10,6 +10,7 @@ class Contest extends CI_Controller
   
   public function recent()
   {
+    $this->output->cache(10);
     $json = @file("http://contests.acmicpc.info/contests.json");
     if(empty($json[0]))
     {

@@ -11,6 +11,7 @@
 */
 
 $platforms = array (
+					'windows nt 6.1'	=> 'Windows 7',
 					'windows nt 6.0'	=> 'Windows Longhorn',
 					'windows nt 5.2'	=> 'Windows 2003',
 					'windows nt 5.0'	=> 'Windows 2000',
@@ -48,6 +49,7 @@ $platforms = array (
 // The order of this array should NOT be changed. Many browsers return
 // multiple browser types so we want to identify the sub-type first.
 $browsers = array(
+					'Maxthon'			=> 'Maxthon',
 					'Flock'				=> 'Flock',
 					'Chrome'			=> 'Chrome',
 					'Opera'				=> 'Opera',

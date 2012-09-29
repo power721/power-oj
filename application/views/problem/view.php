@@ -9,9 +9,9 @@
     function changepage(event)
     {
       event = event ? event : (window.event ? window.event : null);
-      if(event.keyCode == 37)
+      if(prevpage && event.keyCode == 37)
         location = prevpage;
-      else if(event.keyCode == 39)
+      else if(nextpage && event.keyCode == 39)
         location = nextpage;
     }
   });
@@ -50,13 +50,13 @@
     <font color="red">
         Total Submit:
     </font>
-    <a href="<?php echo base_url() ?>status/<?php echo $problem->problem_id ?>">
+    <a href="<?php echo base_url() ?>status/p/<?php echo $problem->problem_id ?>">
         <?php echo $problem->submit ?>
     </a>
     <font color="red">
         Accepted:
     </font>
-    <a href="<?php echo base_url() ?>status/<?php echo $problem->problem_id ?>/0">
+    <a href="<?php echo base_url() ?>status/p/<?php echo $problem->problem_id ?>/r/0">
         <?php echo $problem->accepted ?>
     </a>
     Page View:
@@ -66,10 +66,10 @@
 </p>
 <font color="blue" size=4>
     <p align="center">
-        [<a href="submitpage?problem_id=1008">Submit</a>]&nbsp;&nbsp; 
-        [<a href="problemstatus?problem_id=1008">Status</a>]&nbsp;&nbsp;
-        [<a href="bbs?problem_id=1008">Discuss</a>]
-</p>
+        [<a href="<?php echo base_url() ?>problem/submit/1008">Submit</a>]&nbsp;&nbsp; 
+        [<a href="<?php echo base_url() ?>problem/status/1008">Status</a>]&nbsp;&nbsp;
+        [<a href="<?php echo base_url() ?>bbs/p/1008">Discuss</a>]
+    </p>
 </font>
 <div style="border-top:1px solid #aaa; width:99%; color:#555" align="right">
     Font Size:
@@ -131,6 +131,12 @@
             <pre><a href="#"><?php echo $problem->source ?></a></pre>
         </div>
         <?php endif ?>
-        <br>
     </div>
 </div>
+<font color="blue" size=4>
+    <p align="center">
+        [<a href="<?php echo base_url() ?>problem/submit/1008">Submit</a>]&nbsp;&nbsp; 
+        [<a href="<?php echo base_url() ?>problem/status/1008">Status</a>]&nbsp;&nbsp;
+        [<a href="<?php echo base_url() ?>bbs/p/1008">Discuss</a>]
+    </p>
+</font>

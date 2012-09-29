@@ -11,6 +11,8 @@ class Problem extends CI_Controller
   
   public function index($offset = '')
   {
+    $session_id = $this->session->userdata('session_id');
+    $this->output->cache(1/6, $session_id.'_');
     $limit = 50;
     $total = $this->problem_model->count_problems();
     

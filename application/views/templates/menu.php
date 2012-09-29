@@ -23,5 +23,5 @@
         <div class="message-item"><?php echo $message ?></div>
       <?php endforeach; ?>
     <?php endif; ?>
-    </div><!-- /#messages -->
+  </div><!-- /#messages -->
 <div id="content">

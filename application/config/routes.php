@@ -43,7 +43,7 @@ $route['user/login'] = 'user/login';
 $route['user/logout'] = 'user/logout';
 $route['user/signup'] = 'user/signup';
 $route['user/(:any)'] = 'user/view/$1';
-$route['user'] = 'user/index';
+$route['user'] = 'user';
 
 $route['contest/recent'] = 'contest/recent';
 $route['contest'] = 'contest/recent';
@@ -52,6 +52,11 @@ $route['problem/list/(:any)'] = 'problem/index/$1';
 $route['problem/list'] = 'problem/index';
 $route['problem/(:any)'] = 'problem/view/$1';
 $route['problem'] = 'problem';
+
+$route['status/list/(:any)'] = 'status/index/$1';
+$route['status/list'] = 'status/index';
+$route['status/(:any)'] = 'status/';
+$route['status'] = 'status';
 
 /*$route['news/create'] = 'news/create';
 $route['news/view/(:any)'] = 'news/view/$1';

@@ -118,7 +118,10 @@ td.no {
 td {
 	border:1px solid white;
 	text-align:;
-	font-size:18;
+	font-size:18px;
+}
+td.status {
+    color: white;
 }
 /*
  * pre
